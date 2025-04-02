@@ -1,0 +1,8 @@
+services:
+  grgconseils:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80' # Data Explorer
+      - '443:443'
