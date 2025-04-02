@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grgconseils-fe
+  labels:
+    app: resume
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resume
+  template:
+    metadata:
+      labels:
+        app: resume
+        version: v1.1.7
+    spec:
+      containers:
+        - name: resume
+          image: ghcr.io/andy2great/grgconseils:latest
+      imagePullSecrets:
+        - name: dockersecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grgconseils-resume-fe-svc
+  labels:
+    app: resume
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      targetPort: 80
+      port: 80
+    - name: https
+      targetPort: 443
+      port: 443
+  selector:
+    app: resume
