@@ -7,9 +7,20 @@ metadata:
 spec:
   tls:
     - hosts:
+        - www.grgconseils.ca
         - grgconseils.ca
       secretName: grgconseils-tls
   rules:
+    - host: www.grgconseils.ca
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grgconseils-resume-fe-svc
+                port:
+                  number: 80  
     - host: grgconseils.ca
       http:
         paths:
