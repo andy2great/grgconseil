@@ -5,6 +5,7 @@ metadata:
 spec:
   dnsNames:
     - grgconseils.ca
+    - www.grgconseils.ca
   secretName: grgconseils-tls
   issuerRef:
     name: grgconseils-letsencrypt-prod
